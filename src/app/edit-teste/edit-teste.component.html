@@ -1,0 +1,110 @@
+<p>edit-teste works!</p>
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h1 class="h2">Editar detalhes do registro</h1>
+  <div class="btn-toolbar mb-2 mb-md-0">
+    <div class="btn-group">
+      <button class="btn btn-sm btn-outline-secondary" (click)="goBack()">
+        Voltar
+      </button>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-lg-12">
+    <div class="pricing-header form-block mx-auto">
+      <form [formGroup]="editForm" (ngSubmit)="updateForm()" novalidate>
+        <div class="row">
+          <div class="col-lg-5 col-md-12 col-sm-12">
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label>Nome</label>
+                <input
+                  type="text"
+                  formControlName="nome"
+                  class="form-control"
+                  required
+                />
+                <p *ngIf="nome.touched && nome.invalid" class="error">
+                  <sup>*</sup>Por favor insira o nome
+                </p>
+                <p *ngIf="nome.errors?.['minlength']" class="error">
+                  <sup>*</sup>Insira um nome válido
+                </p>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label>Sobrenome</label>
+                <input
+                  type="text"
+                  formControlName="sobrenome"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-12 mb-3">
+                <label>Email</label>
+                <input
+                  type="email"
+                  formControlName="email"
+                  class="form-control"
+                  required
+                />
+                <p *ngIf="email.touched && email.invalid" class="error">
+                  <sup>*</sup>Please provide email
+                </p>
+                <p *ngIf="email.errors?.['pattern']" class="error">
+                  <sup>*</sup>Por favor um E-mail válido
+                </p>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label>Telefone</label>
+                <input
+                  type="text"
+                  formControlName="telefone"
+                  class="form-control"
+                  required
+                />
+                <p
+                  *ngIf="telefone.touched && telefone.invalid"
+                  class="error"
+                >
+                  <sup>*</sup>Insira seu telefone de contato
+                </p>
+                <p *ngIf="telefone.errors?.['pattern']" class="error">
+                  <sup>*</sup>Somente números são aceitos
+                </p>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label>LinkedIn</label>
+                <input
+                  type="text"
+                  formControlName="linkedin"
+                  class="form-control"
+                />
+              </div>
+              <div class="col-md-12 mb-3">
+                <label>GitHub</label>
+                <input
+                  type="text"
+                  formControlName="github"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="form-group text-right">
+              <button
+                type="submit"
+                class="btn btn-success btn-block"
+                [disabled]="!editForm.valid"
+              >
+                Atualizar Registro
+              </button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,68 @@
+<div
+  class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom"
+>
+  <h2 class="h2">Lista de Registros</h2>
+  <a
+    routerLink="/register-teste"
+    class="btn btn-success"
+    *ngIf="hideWhenNoRegister"
+  >
+    Adicionar Registro
+  </a>
+</div>
+<div class="pricing-header mx-auto">
+  <div class="no-data text-center" *ngIf="preLoader">
+    <img src="assets/preloader.gif" class="preloader-icon" alt="Sem registro" />
+  </div>
+  <div class="no-data text-center" *ngIf="noData">
+    <img src="assets/no-register.svg" class="nodata-msg" alt="Sem registro" />
+    <p class="nodata-msg">Sem registros aianda!</p>
+    <a routerLink="/register-teste" class="btn btn-success"> Adicionar um registro </a>
+  </div>
+  <div class="table-responsive" *ngIf="hideWhenNoRegister">
+    <table
+      class="table table-bordered table-responsive-sm table-responsive-md table-responsive-lg"
+    >
+      <thead>
+        <tr>
+          <th scope="col">Registro ID</th>
+          <th scope="col">Nome</th>
+          <th scope="col">Email</th>
+          <th scope="col">Telefone</th>
+          <th scope="col">LinkedIn</th>
+          <th scope="col">GitHub</th>
+          <th class="text-center" scope="col">Editar</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="
+            let teste of Teste
+              | paginate: { itemsPerPage: 8, currentPage: p };
+            let i = index
+          "
+        >
+          <th scope="row">{{ teste.$key }}</th>
+          <td>{{ teste.nome }} {{ teste.sobrenome }}</td>
+          <td>{{ teste.email }}</td>
+          <td>{{ teste.telefone }}</td>
+          <td>{{ teste.linkedin }}</td>
+          <td>{{ teste.github }}</td>
+          <td class="text-center action-block">
+            <span
+              class="mr-2 btn btn-outline-primary btn-sm"
+              routerLink="/edit-teste/{{ teste.$key }}"
+              >Edit</span
+            >
+            <span
+              class="btn btn-outline-danger btn-sm"
+              (click)="deleteTeste(teste)"
+              >Deletar</span
+            >
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
